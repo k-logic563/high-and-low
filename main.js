@@ -77,7 +77,7 @@ class Game {
         // 2枚目を表示する
         this.renderTramp(true)
         // 0.5秒停止
-        await sleep(500)
+        await sleep(1000)
   
         // 同数ならば絵柄の勝負
         // (弱)クローバー < ダイヤ < ハート < スペード(強)
@@ -126,7 +126,7 @@ class Game {
         // トランプが0になればランクをアラート表示させる
         // ボタンの文言を変更
         if (!this.tramps.length) {
-          await sleep(500)
+          await sleep(1000)
 
           alert(checkRank(this.winPercent))
           resetBtn.innerText = 'もう一度あそぶ'
