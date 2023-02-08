@@ -1,5 +1,4 @@
-// const suits = ['♥', '♦', '♣', '♠']
-const suits = ['♥', '♦']
+const suits = ['♥', '♦', '♣', '♠']
 const trampDoms = document.querySelectorAll('.js-tramp')
 const resetBtn = document.getElementById('js-resetBtn')
 const winArea = document.getElementById('js-win')
