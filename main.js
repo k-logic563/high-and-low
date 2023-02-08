@@ -1,4 +1,5 @@
-const suits = ['♥', '♦', '♣', '♠']
+// const suits = ['♥', '♦', '♣', '♠']
+const suits = ['♥', '♦']
 const trampDoms = document.querySelectorAll('.js-tramp')
 const resetBtn = document.getElementById('js-resetBtn')
 const winArea = document.getElementById('js-win')
@@ -117,21 +118,23 @@ class Game {
         // 破棄したトランプをセットする
         this.trashTramps.push(this.first)
         this.trashTramps.push(this.second)
+        // トランプがあればターンを増やす
+        if (this.tramps.length) {
+          this.turn++
+        }
         // スコアを更新する
         this.displayScore()
         // 捨て場を更新する
         this.renderTrashTramp()
         // トランプ残数がない時
         if (!this.tramps.length) {
-          await sleep(800)
+          await sleep(500)
           // ランクをアラート表示させる
           alert(checkRank(this.winPercent))
           // ボタンテキスト変更
           resetBtn.innerText = 'もう一度あそぶ'
           return
         }
-        // ターンを増やす
-        this.turn++
         // 新たにトランプをセットする
         this.renderTramp()
       })
