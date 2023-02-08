@@ -72,12 +72,10 @@ class Game {
         const selectTramp = this[target.dataset.key]
         const vsTramp = this[target.dataset.key === 'first' ? 'second' : 'first']
 
-        // ターンを増やす
-        this.turn++
         // 2枚目を表示する
         this.renderTramp(true)
-        // 0.5秒停止
-        await sleep(1000)
+
+        await sleep(800)
   
         // 同数ならば絵柄の勝負
         // (弱)クローバー < ダイヤ < ハート < スペード(強)
@@ -123,15 +121,17 @@ class Game {
         this.displayScore()
         // 捨て場を更新する
         this.renderTrashTramp()
-        // トランプが0になればランクをアラート表示させる
-        // ボタンの文言を変更
+        // トランプ残数がない時
         if (!this.tramps.length) {
-          await sleep(1000)
-
+          await sleep(800)
+          // ランクをアラート表示させる
           alert(checkRank(this.winPercent))
+          // ボタンテキスト変更
           resetBtn.innerText = 'もう一度あそぶ'
           return
         }
+        // ターンを増やす
+        this.turn++
         // 新たにトランプをセットする
         this.renderTramp()
       })
