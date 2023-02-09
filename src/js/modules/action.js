@@ -2,6 +2,7 @@ const Card = require('@/js/modules/card')
 const utils = require('@/js/utils')
 const { suits } = require('@/constants')
 
+const resetBtn = document.getElementById('js-resetBtn')
 const trampDoms = document.querySelectorAll('.js-tramp')
 const winArea = document.getElementById('js-win')
 const loseArea = document.getElementById('js-lose')
@@ -19,11 +20,30 @@ class Action {
       }
     }
     this.tramps = utils.shuffle(this.tramps)
+    this.preloadTramp()
+  }
+
+  preloadTramp() {
+    for (let i = 0; i < this.tramps.length; i++) {
+      const t = this.tramps[i]
+      const src = `images/${t.suit}-${t.num}.png`
+      const img = document.createElement('img')
+      img.src = src
+      this.preloadTramps.push(img)
+    }
+  }
+
+  setResetListener() {
+    resetBtn.addEventListener('click', () => {
+      resetBtn.innerText = 'リセット'
+      this.resetGame() 
+    })
   }
   
   resetGame() {
     this.tramps.length = 0
     this.trashTramps.length = 0
+    this.preloadTramps.length = 0
     this.turn = 1
     this.winCount = 0
     this.loseCount = 0
@@ -63,7 +83,6 @@ class Action {
         alert(`${enemyTramp.suit}${utils.convertTrampPattern(enemyTramp.num)} vs ${allyTramp.suit}${utils.convertTrampPattern(allyTramp.num)} :selected\n${victory.suit}${utils.convertTrampPattern(victory.num)} :victory`)
 
         this.flag = false
-
         this.nextGame()
       })
     })
@@ -72,6 +91,7 @@ class Action {
   async nextGame() {
     // 出ているトランプを破棄する
     this.tramps.splice(0, 2)
+    this.preloadTramps.splice(0, 2)
     // 破棄したトランプをセットする
     this.trashTramps.push(this.first)
     this.trashTramps.push(this.second)
@@ -132,15 +152,17 @@ class Action {
   }
 
   renderTramp(isBattle = false) {
-    const first = this.tramps[0]
-    const second = this.tramps[1]
-    this.first = first
-    this.second = second
+    // const first = this.tramps[0]
+    // const second = this.tramps[1]
+    this.first = this.tramps[0]
+    this.second = this.tramps[1]
     if (isBattle) {
-      trampDoms[1].innerHTML = `<img src="images/${second.suit}-${second.num}.png">`
+      trampDoms[1].textContent = ''
+      trampDoms[1].appendChild(this.preloadTramps[1])
       return
     }
-    trampDoms[0].innerHTML = `<img src="images/${first.suit}-${first.num}.png">`
+    trampDoms[0].textContent = ''
+    trampDoms[0].appendChild(this.preloadTramps[0])
     trampDoms[1].innerHTML = '<img src="images/back.png">'
   }
 }

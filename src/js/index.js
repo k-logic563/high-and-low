@@ -3,6 +3,7 @@ const Action = require('@/js/modules/action')
 class Game extends Action {
   tramps = []
   trashTramps = []
+  preloadTramps = []
   first = {}
   second = {}
   turn = 1
@@ -11,11 +12,7 @@ class Game extends Action {
   flag = false
 
   init() {
-    const resetBtn = document.getElementById('js-resetBtn')
-    resetBtn.addEventListener('click', () => {
-      resetBtn.innerText = 'リセット'
-      this.resetGame() 
-    })
+    this.setResetListener()
     this.setTramp()
     this.renderTramp()
     this.displayScore()
