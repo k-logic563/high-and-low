@@ -1,4 +1,5 @@
 const path = require('path')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 const mode = process.env.NODE_ENV
 
@@ -15,8 +16,14 @@ module.exports = {
       '@': path.resolve(__dirname, 'src')
     }
   },
-  devServer: {
-    open: true,
-    static: './'
-  }
+  plugins: [
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 8000,
+      server: {
+        baseDir: './'
+      },
+      files: ['index.html', 'js/main.js']
+    })
+  ]
 }

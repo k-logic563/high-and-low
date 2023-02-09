@@ -45,13 +45,12 @@ class Action {
         const target = e.currentTarget
         const allyTramp = this[target.dataset.key]
         const enemyTramp = this[target.dataset.key === 'first' ? 'second' : 'first']
-        
         this.renderTramp(true)
         await utils.sleep(500)
 
         // 勝者を決める
         let victory = {}
-        const winner = utils.actionBattle(suits, allyTramp, enemyTramp)
+        const winner = utils.actionBattle(allyTramp, enemyTramp)
         if (winner === 'ally') {
           victory = allyTramp
           this.winCount++

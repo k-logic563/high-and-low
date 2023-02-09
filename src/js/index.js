@@ -14,7 +14,7 @@ class Game extends Action {
     const resetBtn = document.getElementById('js-resetBtn')
     resetBtn.addEventListener('click', () => {
       resetBtn.innerText = 'リセット'
-      this.resetGame()
+      this.resetGame() 
     })
     this.setTramp()
     this.renderTramp()
