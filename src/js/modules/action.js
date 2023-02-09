@@ -91,10 +91,11 @@ class Action {
   async nextGame() {
     // 出ているトランプを破棄する
     this.tramps.splice(0, 2)
-    this.preloadTramps.splice(0, 2)
     // 破棄したトランプをセットする
-    this.trashTramps.push(this.first)
-    this.trashTramps.push(this.second)
+    const setTrashTramps = this.preloadTramps.slice(0, 2)
+    this.trashTramps.push(setTrashTramps[0])
+    this.trashTramps.push(setTrashTramps[1])
+    this.preloadTramps.splice(0, 2)
     // トランプがあればターンを増やす
     if (this.tramps.length) {
       this.turn++
@@ -143,17 +144,14 @@ class Action {
 
   renderTrashTramp() {
     if (!this.trashTramps.length) {
-      trashArea.innerHTML = ''
+      trashArea.textContent = ''
       return
     }
-    trashArea.innerHTML = this.trashTramps
-      .map(tramp => `<img src="images/${tramp.suit}-${tramp.num}.png">`)
-      .join('')
+    trashArea.appendChild(this.trashTramps[this.trashTramps.length - 1])
+    trashArea.appendChild(this.trashTramps[this.trashTramps.length - 2])
   }
 
   renderTramp(isBattle = false) {
-    // const first = this.tramps[0]
-    // const second = this.tramps[1]
     this.first = this.tramps[0]
     this.second = this.tramps[1]
     if (isBattle) {
