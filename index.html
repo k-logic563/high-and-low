@@ -8,27 +8,28 @@
     <title>high-and-low</title>
 </head>
 <body>
-  <div class="mx-auto container py-12">
+  <div class="mx-auto container px-4 py-12">
     <h1 class="text-center font-bold text-2xl mb-8">HIGH AND LOW</h1>
     <p class="text-center mb-4">どちらが強いカードが当てるゲームです。<br>表か裏、どちらかクリックして強いカードを当ててください。</p>
     <ul class="max-w-screen-sm bg-gray-100 rounded p-4 mx-auto mb-10 list-disc list-inside grid gap-y-4">
       <li class="pl-4 -indent-4">カードの強さは以下の通りです。<br><span class="font-bold">(弱)2 < 3 < 4 .... J < Q < K < A(強)</span></li>
       <li class="pl-4 -indent-4">数字が同じ場合はマークで判定します。強さは以下の通りです。<br><span class="font-bold">(弱)クローバー < ダイヤ < ハート < スペード(強)</span></li>
+      <li class="pl-4 -indent-4">すべてのカードを使い終えた時に評価がでます（x~y% は「x%未満y%以上」を示す）。<br><ul class="pl-8 mt-2"><li>100% : PERFECT<li>100～60% : EXCELLENT</li><li>60～40% : OK</li><li>40～0%: NOOB</li></ul></li>
     </ul>
     <div class="flex justify-center gap-x-4 mb-20">
       <button data-key="first" class="js-tramp w-[200px]"></button>
       <button data-key="second" class="js-tramp w-[200px]"></button>
     </div>
-    <div class="flex flex-col items-center max-w-screen-md mx-auto gap-y-8">
-      <div id="js-trashArea" class="grid gap-4 grid-cols-[repeat(13,1fr)] place-items-center"></div>
+    <div id="js-trashArea" class="grid gap-1 sm:gap-4 grid-cols-[repeat(13,1fr)] place-items-center max-w-screen-md mx-auto mb-6 empty:mb-0"></div>
+    <div class="max-w-screen-md mx-auto overflow-x-scroll mb-6">
       <table class="border-collapse table-auto w-full text-sm">
         <thead>
           <tr>
-            <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">ターン</th>
-            <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">デッキ残数（枚）</th>
-            <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">勝ち（回）</th>
-            <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">負け（回）</th>
-            <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">勝率（％）</th>
+            <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left whitespace-nowrap">ターン</th>
+            <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left whitespace-nowrap">デッキ残数（枚）</th>
+            <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left whitespace-nowrap">勝ち（回）</th>
+            <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left whitespace-nowrap">負け（回）</th>
+            <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left whitespace-nowrap">勝率（％）</th>
           </tr>
         </thead>
         <tbody class="bg-white">
@@ -41,6 +42,8 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="text-center">
       <button type="button" id="js-resetBtn" class="bg-gray-200 py-1.5 px-4 rounded">リセット</button>
     </div>
   </div>

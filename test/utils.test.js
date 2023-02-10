@@ -1,10 +1,10 @@
 const { checkRank, convertTrampPattern, actionBattle } = require('@/js/utils')
 
 test('勝率に応じたランクが返ってくる', () => {
-  expect('完璧！').toBe(checkRank(100))
-  expect('すごいね！').toBe(checkRank(60))
-  expect('まずまずだね！').toBe(checkRank(40))
-  expect('頑張ろう！').toBe(checkRank(20))
+  expect('PERFECT').toBe(checkRank(100))
+  expect('EXCELLENT').toBe(checkRank(60))
+  expect('OK').toBe(checkRank(40))
+  expect('NOOB').toBe(checkRank(20))
 })
 
 test('トランプ番号に応じた絵柄が返ってくる', () => {
