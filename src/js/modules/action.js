@@ -82,11 +82,11 @@ class Action {
           this.loseCount++;
         }
         // このターンの勝敗をアラートで表示する
-        const resultText = `【YOU】${allyTramp.suit}${utils.convertTrampPattern(
-          allyTramp.num
-        )}\nvs\n【ENEMY】${enemyTramp.suit}${utils.convertTrampPattern(
-          enemyTramp.num
-        )}\n\nYOU ${judge}`;
+        const resultText = `YOU ${judge}\n\n【YOU】${
+          allyTramp.suit
+        }${utils.convertTrampPattern(allyTramp.num)}\n【ENEMY】${
+          enemyTramp.suit
+        }${utils.convertTrampPattern(enemyTramp.num)}`;
         alert(resultText);
 
         this.flag = false;
