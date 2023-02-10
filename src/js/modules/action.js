@@ -73,18 +73,18 @@ class Action {
         let victory = {};
         const winner = utils.actionBattle(allyTramp, enemyTramp);
         if (winner === "ally") {
-          judge = "WINNER!!";
+          judge = "あなたの勝ちです！！";
           victory = allyTramp;
           this.winCount++;
         } else {
-          judge = "LOSER...";
+          judge = "あなたの負けです...";
           victory = enemyTramp;
           this.loseCount++;
         }
         // このターンの勝敗をアラートで表示する
-        const resultText = `YOU ${judge}\n\n【YOU】${
+        const resultText = `${judge}\n\n【あなた】${
           allyTramp.suit
-        }${utils.convertTrampPattern(allyTramp.num)}\n【ENEMY】${
+        }${utils.convertTrampPattern(allyTramp.num)}\n【相手】${
           enemyTramp.suit
         }${utils.convertTrampPattern(enemyTramp.num)}`;
         alert(resultText);

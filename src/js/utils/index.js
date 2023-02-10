@@ -31,15 +31,15 @@ const convertTrampPattern = (j) => {
 
 const checkRank = (percent) => {
   if (percent === 100) {
-    return "PERFECT";
+    return "完璧！";
   }
   if (percent >= 60) {
-    return "EXCELLENT";
+    return "すごいね！";
   }
   if (percent >= 40) {
-    return "OK";
+    return "まずまずだね！";
   }
-  return "NOOB";
+  return "頑張ろう！";
 };
 
 const actionBattle = (ally, enemy) => {
