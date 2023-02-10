@@ -1,5 +1,5 @@
-const suits = ['♥', '♦', '♣', '♠']
+const suits = ["♥", "♦", "♣", "♠"];
 
 module.exports = {
-  suits
-}
+  suits,
+};

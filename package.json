@@ -5,6 +5,7 @@
     "husky": "^8.0.3",
     "jest": "^29.4.2",
     "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.4",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
   },
@@ -16,6 +17,7 @@
     "build": "NODE_ENV=production webpack",
     "dev": "run-p start",
     "test": "jest",
+    "format": "prettier --write src/js/*.js src/js/**/*.js",
     "prepare": "husky install"
   },
   "keywords": [],
