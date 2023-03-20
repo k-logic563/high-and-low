@@ -42,27 +42,42 @@ const checkRank = (percent) => {
   return "NOOB";
 };
 
-const actionBattle = (ally, enemy) => {
-  let winner = {};
+const actionBattle = (player, enemy, key) => {
+  let winner = "";
+  let firstCondition = "";
+  let secondCondition = "";
+  let thirdCondition = "";
+  let forthCondition = "";
 
   // 絵柄の勝負
-  if (ally.num === enemy.num) {
-    const selectPatternIndex = suits.findIndex((s) => s === ally.suit);
-    const vsPatternIndex = suits.findIndex((s) => s === enemy.suit);
-    if (selectPatternIndex > vsPatternIndex) {
-      winner = "ally";
+  if (player.num === enemy.num) {
+    const playerIndex = suits.findIndex((s) => s === player.suit);
+    const enemyIndex = suits.findIndex((s) => s === enemy.suit);
+
+    if (key === "high") {
+      firstCondition = playerIndex > enemyIndex;
+    } else {
+      firstCondition = playerIndex < enemyIndex;
+    }
+
+    if (firstCondition) {
+      winner = "player";
     } else {
       winner = "enemy";
     }
   } else {
     // 数値の勝負
-    // (弱)2 < 3 < 4 .... J < Q < K < A(強)
-    if (ally.num === 1) {
-      winner = "ally";
-    } else if (enemy.num === 1) {
+    secondCondition = key === "high" ? player.num === 13 : player.num === 1;
+    thirdCondition = key === "high" ? enemy.num === 13 : enemy.num === 1;
+    forthCondition =
+      key === "high" ? player.num > enemy.num : player.num < enemy.num;
+
+    if (secondCondition) {
+      winner = "player";
+    } else if (thirdCondition) {
       winner = "enemy";
-    } else if (ally.num > enemy.num) {
-      winner = "ally";
+    } else if (forthCondition) {
+      winner = "player";
     } else {
       winner = "enemy";
     }

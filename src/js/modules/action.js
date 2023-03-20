@@ -3,13 +3,15 @@ const utils = require("@/js/utils");
 const { suits } = require("@/constants");
 
 const resetBtn = document.getElementById("js-resetBtn");
-const trampDoms = document.querySelectorAll(".js-tramp");
+const buttonArea = document.getElementById("js-buttonArea");
 const winArea = document.getElementById("js-win");
 const loseArea = document.getElementById("js-lose");
 const percentArea = document.getElementById("js-percent");
 const countArea = document.getElementById("js-count");
 const turnArea = document.getElementById("js-turn");
 const trashArea = document.getElementById("js-trashArea");
+const trampDoms = document.querySelectorAll(".js-tramp");
+const trampButtons = document.querySelectorAll(".js-trampButton");
 
 class Action {
   setTramp() {
@@ -36,6 +38,7 @@ class Action {
   setResetListener() {
     resetBtn.addEventListener("click", () => {
       resetBtn.innerText = "リセット";
+      buttonArea.classList.remove("hidden");
       this.resetGame();
     });
   }
@@ -56,37 +59,40 @@ class Action {
   }
 
   battle() {
-    trampDoms.forEach((tramp) => {
-      tramp.addEventListener("click", async (e) => {
+    trampButtons.forEach((btn) => {
+      btn.addEventListener("click", async (e) => {
         if (!this.tramps.length || this.flag) return;
 
         this.flag = true;
 
         const target = e.currentTarget;
-        const allyTramp = this[target.dataset.key];
-        const enemyTramp =
-          this[target.dataset.key === "first" ? "second" : "first"];
+        const key = target.dataset.key;
+
         this.renderTramp(true);
         await utils.sleep(500);
 
+        // this.second: 自分のカード
+        // this.first: 相手のカード
         let judge = "";
-        let victory = {};
-        const winner = utils.actionBattle(allyTramp, enemyTramp);
-        if (winner === "ally") {
+        const player = this.second;
+        const enemy = this.first;
+        const winner = utils.actionBattle(player, enemy, key);
+
+        if (winner === "player") {
           judge = "あなたの勝ちです！！";
-          victory = allyTramp;
           this.winCount++;
         } else {
           judge = "あなたの負けです...";
-          victory = enemyTramp;
           this.loseCount++;
         }
+
         // このターンの勝敗をアラートで表示する
         const resultText = `${judge}\n\n【あなた】${
-          allyTramp.suit
-        }${utils.convertTrampPattern(allyTramp.num)}\n【相手】${
-          enemyTramp.suit
-        }${utils.convertTrampPattern(enemyTramp.num)}`;
+          player.suit
+        }${utils.convertTrampPattern(player.num)}\n【相手】${
+          enemy.suit
+        }${utils.convertTrampPattern(enemy.num)}`;
+
         alert(resultText);
 
         this.flag = false;
@@ -113,6 +119,8 @@ class Action {
     this.renderTrashTramp();
     // トランプ残数がない時
     if (!this.tramps.length) {
+      // ボタンエリア削除
+      buttonArea.classList.add("hidden");
       await utils.sleep(500);
       // ランクをアラート表示させる
       alert(utils.checkRank(this.winPercent));

@@ -16,48 +16,93 @@ test('トランプ番号に応じた絵柄が返ってくる', () => {
 })
 
 describe('勝敗が正しく判定される', () => {
-  it ('数値比較：味方が勝つ', () => {
-    const ally = {
+  it ('HIGH & 数値比較：プレイヤーが勝つ', () => {
+    const player = {
       suit: '♥',
-      num: 1
-    }
-    const enemy = {
-      suit: '♥',
-      num: 2
-    }
-    expect(actionBattle(ally, enemy)).toBe('ally')
-  })
-  it ('数値比較：敵が勝つ', () => {
-    const ally = {
-      suit: '♥',
-      num: 2
+      num: 13
     }
     const enemy = {
       suit: '♥',
       num: 1
     }
-    expect(actionBattle(ally, enemy)).toBe('enemy')
+    expect(actionBattle(player, enemy, 'high')).toBe('player')
   })
-  it ('絵柄比較：味方が勝つ', () => {
-    const ally = {
-      suit: '♠',
-      num: 2
+  it ('HIGH & 数値比較：相手が勝つ', () => {
+    const player = {
+      suit: '♥',
+      num: 1
     }
     const enemy = {
       suit: '♥',
-      num: 2
+      num: 13
     }
-    expect(actionBattle(ally, enemy)).toBe('ally')
+    expect(actionBattle(player, enemy, 'high')).toBe('enemy')
   })
-  it ('絵柄比較：敵が勝つ', () => {
-    const ally = {
+  it ('HIGH & 絵柄比較：プレイヤーが勝つ', () => {
+    const player = {
+      suit: '♠',
+      num: 1
+    }
+    const enemy = {
       suit: '♥',
-      num: 2
+      num: 1
+    }
+    expect(actionBattle(player, enemy, 'high')).toBe('player')
+  })
+  it ('HIGH & 絵柄比較：敵が勝つ', () => {
+    const player = {
+      suit: '♥',
+      num: 1
     }
     const enemy = {
       suit: '♠',
-      num: 2
+      num: 1
     }
-    expect(actionBattle(ally, enemy)).toBe('enemy')
+    expect(actionBattle(player, enemy, 'high')).toBe('enemy')
+  })
+
+  it ('LOW & 数値比較：プレイヤーが勝つ', () => {
+    const player = {
+      suit: '♥',
+      num: 1
+    }
+    const enemy = {
+      suit: '♥',
+      num: 13
+    }
+    expect(actionBattle(player, enemy, 'low')).toBe('player')
+  })
+  it ('LOW & 数値比較：相手が勝つ', () => {
+    const player = {
+      suit: '♥',
+      num: 13
+    }
+    const enemy = {
+      suit: '♥',
+      num: 1
+    }
+    expect(actionBattle(player, enemy, 'low')).toBe('enemy')
+  })
+  it ('LOW & 絵柄比較：プレイヤーが勝つ', () => {
+    const player = {
+      suit: '♥',
+      num: 1
+    }
+    const enemy = {
+      suit: '♠',
+      num: 1
+    }
+    expect(actionBattle(player, enemy, 'low')).toBe('player')
+  })
+  it ('LOW & 絵柄比較：敵が勝つ', () => {
+    const player = {
+      suit: '♠',
+      num: 1
+    }
+    const enemy = {
+      suit: '♥',
+      num: 1
+    }
+    expect(actionBattle(player, enemy, 'low')).toBe('enemy')
   })
 })
