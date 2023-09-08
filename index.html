@@ -10,12 +10,15 @@
 <body>
   <div class="mx-auto container px-4 py-12">
     <h1 class="text-center font-bold text-2xl mb-8">HIGH AND LOW</h1>
-    <p class="text-center mb-4">伏せてあるカードがもう一方のカードより、大きいか小さいかを当てるゲームです。</p>
-    <ul class="max-w-screen-sm bg-gray-100 rounded p-4 mx-auto mb-10 list-disc list-inside grid gap-y-4">
-      <li class="pl-4 -indent-4">カードの強さは以下の通りです。<br><span class="font-bold">(弱)A < 2 < 3 < 4 .... J < Q < K(強)</span></li>
-      <li class="pl-4 -indent-4">数字が同じ場合はマークで判定します。強さは以下の通りです。<br><span class="font-bold">(弱)♣ < ♦ < ♥ < ♠(強)</span></li>
-      <li class="pl-4 -indent-4">すべてのカードを使い終えた時に評価がでます（x~y% は「x%未満y%以上」を示す）。<br><ul class="pl-8 mt-2"><li>100% : PERFECT<li>100～60% : EXCELLENT</li><li>60～40% : OK</li><li>40～0%: NOOB</li></ul></li>
-    </ul>
+    <details class="mb-10">
+      <summary class="text-center">ルール説明</summary>
+      <p class="text-center mb-4">伏せてあるカードがもう一方のカードより、大きいか小さいかを当てるゲームです。</p>
+      <ul class="max-w-screen-sm bg-gray-100 rounded p-4 mx-auto list-disc list-inside grid gap-y-4">
+        <li class="pl-4 -indent-4">カードの強さは以下の通りです。<br><span class="font-bold">(弱)A < 2 < 3 < 4 .... J < Q < K(強)</span></li>
+        <li class="pl-4 -indent-4">数字が同じ場合はマークで判定します。強さは以下の通りです。<br><span class="font-bold">(弱)♣ < ♦ < ♥ < ♠(強)</span></li>
+        <li class="pl-4 -indent-4">すべてのカードを使い終えた時に評価がでます（x~y% は「x%未満y%以上」を示す）。<br><ul class="pl-8 mt-2"><li>100% : PERFECT<li>100～60% : EXCELLENT</li><li>60～40% : OK</li><li>40～0%: NOOB</li></ul></li>
+      </ul>
+    </details> 
     <div class="flex justify-center gap-x-4 mb-12">
       <div class="js-tramp w-[200px]"></div>
       <div class="js-tramp w-[200px]"></div>
